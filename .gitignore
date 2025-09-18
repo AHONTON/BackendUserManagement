@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+
+# Directory for database (si tu stockes des données localement)
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional: build output
+dist/
+build/
