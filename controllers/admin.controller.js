@@ -19,7 +19,7 @@ const register = async (req, res, next) => {
 };
 
 const validate = async (req, res, next) => {
-  const { token } = req.query;
+  const { token } = req.body;
 
   try {
     const result = await validateAdminAccount(token);

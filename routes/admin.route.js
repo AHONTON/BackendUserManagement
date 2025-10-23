@@ -6,7 +6,7 @@ const authMiddleware = require("../middlewares/auth.middleware")
 
 router.get("/count", count);
 router.post("/register", upload.single("photo"), register);
-router.get("/validate", validate);
+router.post("/validate", validate);
 router.post("/login", login);
 router.get("/me", authMiddleware, me);
 
