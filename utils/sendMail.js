@@ -9,7 +9,7 @@ const sendValidationEmail = async (email, token, nom, prenom, photo) => {
     },
   });
 
-  const url = `${process.env.FRONTEND_URL}/verify?token=${token}`;
+  const url = `${process.env.FRONTEND_URL}/validate?token=${token}`;
   const fullName = `${prenom} ${nom}`;
 
   await transporter.sendMail({

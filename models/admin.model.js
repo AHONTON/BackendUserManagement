@@ -9,6 +9,7 @@ const adminSchema = new mongoose.Schema(
     sexe: { type: String, enum: ["Homme", "Femme"], required: true },
     password: { type: String, required: true },
     isValidated: { type: Boolean, default: false }, // Pour validation par mail
+    gmailRefreshToken: { type: String }
   },
   { timestamps: true }
 );

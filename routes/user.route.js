@@ -8,7 +8,7 @@ const authAdmin = require("../middlewares/auth.middleware");
 router.post("/", authAdmin, upload.single("photo"), validateUser, addUser);
 router.get("/", authAdmin, getUsers);
 router.get("/:id", authAdmin, getUser);
-router.put("/:id", authAdmin, upload.single("photo"), validateUser, updateUser);
 router.delete("/:id", authAdmin, deleteUser);
+
 
 module.exports = router;

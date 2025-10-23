@@ -2,9 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const http = require("http");
+const { Server } = require("socket.io");
 
 dotenv.config();
-
 const connectDB = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 const adminRoute = require("./routes/admin.route");
@@ -12,6 +13,27 @@ const userRoute = require("./routes/user.route");
 const logger = require("./middlewares/logger");
 
 const app = express();
+const server = http.createServer(app);
+
+// Initialisation de Socket.io
+const io = new Server(server, {
+  cors: {
+    origin: "*", // ou ton frontend URL
+    methods: ["GET", "POST"],
+  },
+});
+
+// Middleware Socket.io
+app.set("io", io);
+
+// Gestion des connexions Socket.io
+io.on("connection", (socket) => {
+  console.log("Admin connecté via socket", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("Admin déconnecté", socket.id);
+  });
+});
 
 // Connexion à MongoDB
 connectDB();
@@ -43,6 +65,6 @@ if (!process.env.JWT_SECRET) {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });

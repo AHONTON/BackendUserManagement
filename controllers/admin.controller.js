@@ -57,4 +57,31 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { register, validate, login };
+const me = async (req, res, next) => {
+  try {
+    const profile = await getAdminProfile(req.user.id);
+    res.status(200).json({
+      success: true,
+      admin: profile,
+    });
+  } catch (error) {
+    if (error instanceof AppError) {
+      return res.status(error.statusCode || 400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+    next(error);
+  }
+};
+
+const count = async (req, res, next) => {
+  try {
+    const n = await countAdmins();
+    return res.json({ count: n, exists: n >= 1 });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { register, validate, login, me, count };

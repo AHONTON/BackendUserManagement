@@ -68,4 +68,21 @@ const loginAdmin = async (email, password) => {
   return { admin, token };
 };
 
-module.exports = { registerAdmin, validateAdminAccount, loginAdmin };
+const getAdminProfile = async (id) => {
+  const admin = await findAdminById(id);
+  if (!admin) throw new AppError("Admin non trouvé !", 404);
+
+  return {
+    nom: admin.nom,
+    prenom: admin.prenom,
+    email: admin.email,
+    statut: "connecté",
+  };
+};
+
+module.exports = {
+  registerAdmin,
+  validateAdminAccount,
+  loginAdmin,
+  getAdminProfile,
+};

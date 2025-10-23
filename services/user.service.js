@@ -14,8 +14,8 @@ class UserService {
     }
   }
 
-  async getUsers() {
-    return await userRepository.findAll();
+  async getUsers(limit) {
+    return await userRepository.findAll(limit);
   }
 
   async getUser(id) {
