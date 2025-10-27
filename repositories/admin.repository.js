@@ -25,4 +25,10 @@ const findAdminById = async (id) => {
   return await Admin.findById(id).select("nom prenom email");
 };
 
-module.exports = { findAdminByEmail, findAdminById, countAdmins, createAdmin, validateAdmin };
+module.exports = {
+  findAdminByEmail,
+  findAdminById,
+  countAdmins,
+  createAdmin,
+  validateAdmin,
+};

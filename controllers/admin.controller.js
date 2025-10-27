@@ -2,6 +2,7 @@ const {
   registerAdmin,
   validateAdminAccount,
   loginAdmin,
+  getAdminProfile,
 } = require("../services/admin.service");
 
 const AppError = require("../utils/AppError");
@@ -59,7 +60,7 @@ const login = async (req, res, next) => {
 
 const me = async (req, res, next) => {
   try {
-    const profile = await getAdminProfile(req.user.id);
+    const profile = await getAdminProfile(req.admin._id);
     res.status(200).json({
       success: true,
       admin: profile,

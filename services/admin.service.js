@@ -6,6 +6,7 @@ const {
   countAdmins,
   createAdmin,
   validateAdmin,
+  findAdminById,
 } = require("../repositories/admin.repository");
 const { sendValidationEmail } = require("../utils/sendMail");
 
